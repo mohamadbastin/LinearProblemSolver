@@ -1,12 +1,26 @@
 from ortools.linear_solver import pywraplp
 
 
-def solve_lpp():
+#
+# class LPPSolver:
+#     _solver = pywraplp.Solver.CreateSolver('GLOP')
+#
+#     @staticmethod
+#     def number_of_variables(cls):
+#         print('Number of variables =', cls._solver.NumVariables())
+#
+#     @staticmethod
+#     def initiate_variables(cls, listOfVars):
+#         for var in listOfVars:
+#             cls._solver.NumVar(0, cls._solver.infinity(), str(var))
 
+
+def solve_lpp():
+    """Linear programming sample."""
+    # Instantiate a Glop solver, naming it LinearExample.
     solver = pywraplp.Solver.CreateSolver('GLOP')
 
     # Create the two variables and let them take on any non-negative value.
-
     # x1 = solver.NumVar(0, solver.infinity(), 'x1')
     # x2 = solver.NumVar(0, solver.infinity(), 'x2')
     # x3 = solver.NumVar(0, solver.infinity(), 'x3')
@@ -26,10 +40,7 @@ def solve_lpp():
     #
 
     # Constraint 0: x + 2y <= 14.
-
     solver.Add(z1 + z2 <= z3)
-    solver.Add(z3 <= 40)
-    solver.Add(z3 >= 40)
     solver.Add(30 * z1 + 28.125 * z2 + 78.75 * (z3 - z2 - z1) <= 6000)
     # solver.Add(0.04 * y1 + 0.045 * y2 + 0.21 * y3 <= 6000)
 
@@ -47,11 +58,22 @@ def solve_lpp():
     # solver.Add(y3 <= 250)
     # solver.Add(y4 <= 250)
     # solver.Add(y5 <= 250)
+    # solver.Add()
+
+    # # Constraint 1: 3x - y >= 0.
+    # solver.Add(3 * x - y >= 0.0)
+    #
+    # # Constraint 2: x - y <= 2.
+    # solver.Add(x - y <= 2.0)
+
+    #
+
+    #
 
     print('Number of constraints =', solver.NumConstraints())
 
     # Objective function: 3x + 4y.
-    solver.Maximize(3000 * z1 + 3750 * z2 + 3750 * (z3 - z2 - z1))
+    solver.Maximize(4 * y1 + 6 * y2 + 10 * y3)
 
     # Solve the system.
     status = solver.Solve()
@@ -65,9 +87,9 @@ def solve_lpp():
         # print('x4 =', x4.solution_value())
         # print('x5 =', x5.solution_value())
         # print('x6 =', x6.solution_value())
-        print('z1 =', z1.solution_value())
-        print('z2 =', z2.solution_value())
-        print('z3 =', z3.solution_value())
+        print('y1 =', y1.solution_value())
+        print('y2 =', y2.solution_value())
+        print('y3 =', y3.solution_value())
         # print('y4 =', y4.solution_value())
         # print('y5 =', y5.solution_value())
     else:
