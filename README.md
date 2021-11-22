@@ -1,5 +1,5 @@
 # LinearProblemSolver
-a simple program to solver linear problems using Google OR tools
+a simple program to solve linear problems using Google OR tools
 
 ### Usage
 * Declare your variables
